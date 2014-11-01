@@ -1,0 +1,115 @@
+%% ドキュメントクラスのロード jarticle クラス
+%% onecolumn : 一段組み
+%% a4j : A4サイズ，和文
+%% fleqn : 数式は左揃え
+\documentclass[twocolumn,a4j,fleqn]{jarticle}
+
+%% 使用パッケージの指定
+%% graphicx : 図の使用
+%% fancyhdr : ヘッダ設定
+%% lastpage : ページ番号出力マクロ
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+%\usepackage{listings, jlisting}
+
+%\lstset{
+%  numbers=left,
+%  numbersep=-10pt,
+%  columns=l
+%}
+
+%% 独自マクロ タイトルスタイルの変更
+\makeatletter
+\let\@oldmaketitle=\@maketitle
+\def\@maketitle{
+  \vskip -3zh
+  \@oldmaketitle
+  %\vspace*{-0.8cm}
+}
+\makeatother
+
+%% ページのレイアウト指定
+\setlength{\textheight}{242mm}
+%\setlength{\textwidth}{500pt}
+\setlength{\mathindent}{1zw}
+\setlength{\headheight}{15.0pt}
+\setlength{\voffset}{-1cm}
+%\setlength{\hoffset}{-1cm}
+
+%% ヘッダスタイルの適用
+\pagestyle{fancy}
+\lhead{ 輪講 2014/10/28 }
+\chead{}
+\rhead{ 高山夏樹 }
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0pt}
+
+% タイトル
+%\title{
+%  {\Large{\bf TeX環境の導入 }}\\
+%  \vspace*{4mm}
+%  \bf{高山夏樹}\\
+%  \vspace*{2mm}
+%  {\large 電気通信大学大学院 情報理工学研究科}\\
+%}
+\title{
+  {\Large{\bf 【要約】Connected Segmentation Tree - A Joint Representation of Region Layout and Hierarchy }}
+}
+\author{\bf{\dag Nerendra Ahuja, \dag Sinisa Todorovic}\\
+  %\vspace*{4mm}
+  {\large \dag Beckman Institute, University of Illinois at Urbana-Champaign}
+}
+\date{}
+
+%%----- ここから論文本体 ---------------------------------------
+\begin{document}%{
+\maketitle
+
+\small{
+\begin{abstract}
+本論文ではCST(Connected Segmentation Tree)と名付ける新たなオブジェクト表現を
+提案する．CSTは光学，幾何学，空間的な隣接関係などの文脈におけるオブジェクトの標準的な特徴を
+表現し，オブジェクトを構成する領域特徴を抑制する．
+CSTは領域の階層的な関係を表現するST(Segmentation Tree)を拡張することで得られ，
+階層関係に加えて階層内の隣接関係を同時に表現することが可能である．
+この結果，CSTはRAG(Region Adjacensy Graphs)の階層を表現する．
+領域の隣接関係は画素パターンに関するボロノイ図を領域に拡張することで得られる．
+あるカテゴリに関するCSTの自動学習はラベル無しのトレーニング画像を用いた
+CSTグラフのマッチング問題として形式化され，最大のマッチング部分グラフを合成する
+ことで得ることができる．
+また，本論文では最も顕著性の高いノードとエッジを同時に探索することで最適化を
+行う手法を提案する．ここで，ノードは領域を表し，エッジは領域の隣接関係を表す．
+カテゴリモデルの画像のCSTへのマッチングは，カテゴリ内の検出，分割，認識が同時に起きることを
+意味する．
+
+\end{abstract}
+
+\input{sec1}
+
+\input{sec2}
+
+\input{sec3}
+
+\input{sec4}
+
+\input{sec5}
+
+\input{sec6}
+
+%% 参考文献
+\bibliographystyle{sieicej}
+%\bibliographystyle{jplain}
+\bibliography{main}
+%\bibliographystyle{sieicej}
+%\begin{thebibliography}{99}
+%\bibitem{bib:Latex2E}
+%  奥村晴彦，改定第4版 LATEX2$\varepsilon$ 美文書作成入門，\\須藤真己(編)，pp.1-184，(社)技術評論社，東京，2007.
+%\end{thebibliography}
+}
+\end{document}
