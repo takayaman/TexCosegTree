@@ -1,1 +1,0 @@
-Cosegmentation Tree要約
